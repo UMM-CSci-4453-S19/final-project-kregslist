@@ -65,7 +65,12 @@ If your project is explanatory based, then your points and activities will revol
 desired technology HOWEVER, you may also choose to gain points for in-class tutorials where you teach aspects of your technology.  
 These tutorials are in addition to your overall presentation (which is a seperate source of points.)
 
+### Format/Structure (1 point)
+
+Is the document easy to understand and complete?  Is it free of spelling and grammatical errors, etc.
+
 **DEADLINE:** Before Thanksgiving break
+
 
 ## Implement the Project (50 points) 
 
