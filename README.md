@@ -11,11 +11,11 @@ Your Final Project has the following steps:
 
 ## Choose group members (3 points)
 
-Choose your group members and record that information in the repository.  Points will be subtracted, one for every day past Monday Nov 20th that this information is not present.
+Choose your group members and record that information in the repository.
 
 ## Schedule your time (2 points)
 
-Have a presentation time picked out.
+Have a presentation date/time picked out. We'll use most of the last two weeks for presentations, along with course evals, final exam wrap-up, and the like.
 
 ## Design the project (10 points)
 
@@ -88,9 +88,12 @@ This is where you actually make the project a reality.  The 50 points are from y
 
 ## Presentation to class (25 points)
 
-The presentation sohould be 5 minutes for each person in the group-- although only 1 person needs to present.  The presentation should include a slide-show of some sort with contributions from all group members.  Points will be awarded for
+The presentation should be 5 minutes for each person in the group. The presentation should include a slide-show of some sort with contributions from all group members, both in the slides and in the presentation. Your presentation should feel like a coherent presentation, and not a disjoint set of semi-related topics. 
+
+Points will be awarded for
 
 * clarity
+* organization and focus
 * presentation style
 * technical content
 * informativeness
