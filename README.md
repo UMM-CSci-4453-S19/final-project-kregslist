@@ -35,10 +35,20 @@ You can **implement a project** using existing technology.  Some past projects h
 * A train simulation system using mongoDB
 * A system for keeping track of animal pedigrees using Neo4J
 
-You can also **describe a database technology** that we don't cover (or that we don't cover in as much detail as you would like).  Some past projects have included:
+You can also **describe a database technology** (or, more broadly, a data storage technology) that we don't cover (or that we don't cover in as much detail as you would like).  Some past projects have included:
 
 * An introduction to MUMPS (a medical database language and system)
 * Database aspects of arcGIS
+
+There are a _host_ of database and storage/retrieval tools out there that we don't have time to cover in this class, but which would certainly be quite interesting. Examples include:
+
+* `redis`
+* `cassandra`
+* `CouchDB`
+* `Neo4J`
+* Triplestore or RDF store DBs and semantic queries, or SPARQL
+* `OpenTSDB`
+* Hadoop HDFS
 
 You should provide a reasonable summary of what you will do/cover but it does not need to be exhaustive at the very beginning 
 (I expect this document to evolve over time).  
