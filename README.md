@@ -129,7 +129,7 @@ The group portion is informal and should not be particularly long.  Include this
 The individual portion is where each person lists their reponsibilities from the design document and discusses whether or 
 not they lived up to their end of the bargain.  Did duties change?  If so, in what way?  The individual report is  **also**
 where you comment on the contributions of your team-mates.  Did your team-mates live up to their end of the bargain or not.  
-If **not** this is the place to include those details.  It would be a good idea to talk to me earlier if you feel somebody on your team is not doing their share... but this is the place to make your voice heard formally.  **Do NOT** include this in the repository-- instead print up a copy and hand it in to me.
+If **not** this is the place to include those details.  It would be a good idea to talk to me earlier if you feel somebody on your team is not doing their share... but this is the place to make your voice heard formally.  **Do NOT** include this in the repository-- instead turn it in on the appropriate Canvas assignment.
 
 **READ THIS CAREFULLY** Not turning in your final summary means you can't do better than C.
 
