@@ -9,9 +9,78 @@
   <script src="click.js"></script>
 
 </head>
-<body>
+<body ng-app="buttons">
+  <div class = "container-fluid">
+    <h1>Kregslist</h1>
 
-  <h1>Kregslist</h1>
+  <div id="post" ng-controller="KregCtrl">
+    <div align="right">
+    <table id="cart" style="width:50%" border="3px solid black" ng-for="item in cart">
+      <tr>
+        <th>PostID</th>
+        <th>User</th>
+        <th>Description</th>
+        <th>Title</th>
+        <th>Post time</th>
+        <th>Price</th>
+        <th>Category</th>
+      </tr>
+
+      <tr ng-repeat="item in post">
+        <td>{{item.post_id}}</td>
+        <td>{{item.user_id}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.post_time}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.type}}</td>
+
+      </tr>
+    </table>
+    <button ng-click="createPost();">click me</button>
+  </div>
+
+  <div>
+    <h2>Create Post</h2>
+    Title: <input type="text" id="title" value="">
+    Description: <input type="text" id="description" value="">
+    Price: <input type="text" id="price" value="">
+    Select Category:
+    <select id="category">
+      <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
+    </select>
+
+
+    <button ng-click="createPost();">Create</button>
+
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+
+
+    <script>
+    function postGen() {
+      var w = document.getElementById("title").value;
+      var x = document.getElementById("description").value;
+      var y = document.getElementById("price").value;
+      var z = document.getElementById("category").value;
+
+
+      document.getElementById("demo1").innerHTML = w;
+      document.getElementById("demo2").innerHTML = x;
+      document.getElementById("demo3").innerHTML = y;
+      document.getElementById("demo4").innerHTML = z;
+
+      createPost(w,x,y,z);
+    }
+    </script>
+  </div>
+
+</div>
+
+
+
 
 </body>
 
