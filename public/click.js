@@ -11,6 +11,7 @@ angular.module('buttons', [])
 
     $scope.createPost=createPost;
     $scope.filter=filter;
+    $scope.createUser=createUser;
 
     var loading = false;
 
@@ -48,6 +49,23 @@ angular.module('buttons', [])
      .error(function(){$scope.errorMessage="Unable create post";});
 
      refreshPost();
+   }
+   function createUser(){
+     var username = document.getElementById("username").value;
+     var password = document.getElementById("password").value;
+     var firstn = document.getElementById("firstn").value;
+     var lastn = document.getElementById("lastn").value;
+     var email = document.getElementById("email").value;
+
+     console.log("creating user");
+
+     loading=true;
+     $scope.errorMessage='';
+     kregApi.userCreate(username,password,firstn,lastn,email)
+     .success(function(){})
+     .error(function(){$scope.errorMessage="Unable create post";});
+
+
    }
 
    function refreshCategory(){
@@ -101,6 +119,12 @@ return {
   },
   postCreate: function(t,d,p,c){
     var url = apiUrl+'/create?title='+t+'&desc='+d+'&price='+p+'&cat='+c;
+    console.log(url);
+    return $http.get(url);
+
+  },
+  userCreate: function(u,p,f,l,e){
+    var url = apiUrl+'/user?username='+u+'&password='+p+'&firstn='+f+'&lastn='+l+'&email='+e;
     console.log(url);
     return $http.get(url);
   },
