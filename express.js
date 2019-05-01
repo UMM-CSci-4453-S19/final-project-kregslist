@@ -34,6 +34,24 @@ app.get("/post", function(req, res) {
   })(res));
 });
 
+app.get("/filter", function(req, res) {
+  var cat = req.param('cat');
+  var min = req.param('min');
+  var max = req.param('max');
+
+
+  var sql = "select aji.post.*, aji.category.type from aji.post join aji.category on aji.category.category_id = aji.post.category_id where aji.post.category_id="+cat+" and aji.post.price >="+min+" and aji.post.price <="+max+";";
+  connection.query(sql, (function(res) {
+    return function(err, rows, fields) {
+      if (err) {
+        console.log("We have an error getting the posts:");
+        console.log(err);
+      }
+      res.send(rows);
+    }
+  })(res));
+});
+
 app.get("/category", function(req, res) {
   var sql = 'select * from aji.category';
 

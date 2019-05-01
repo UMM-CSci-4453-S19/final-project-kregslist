@@ -15,7 +15,7 @@
 
   <div id="post" ng-controller="KregCtrl">
     <div align="right">
-    <table id="cart" style="width:50%" border="3px solid black" ng-for="item in cart">
+    <table id="cart" style="width:50%" border="3px solid black">
       <tr>
         <th>PostID</th>
         <th>User</th>
@@ -37,7 +37,7 @@
 
       </tr>
     </table>
-    
+
   </div>
 
   <div>
@@ -53,6 +53,18 @@
     <button ng-click="createPost();">Create</button>
 
   </div>
+
+  <div>
+    <h2>Filter Posts</h2>
+    Select Category:
+    <select id="filterCategory">
+      <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
+    </select>
+    Price(Minimum): <input type="text" id="min" value="">
+    Price(Maximum): <input type="text" id="max" value="">
+
+    <button ng-click="filter();">Filter</button>
+  </div
 
 </div>
 

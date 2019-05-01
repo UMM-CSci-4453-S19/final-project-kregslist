@@ -10,6 +10,7 @@ angular.module('buttons', [])
     $scope.isLoading=isLoading;
 
     $scope.createPost=createPost;
+    $scope.filter=filter;
 
     var loading = false;
 
@@ -61,7 +62,27 @@ angular.module('buttons', [])
        .error(function () {
            $scope.errorMessage="Unable to load Category:  Database request failed";
            loading=false;
-       });;
+       });
+   }
+
+   function filter(){
+     var c = document.getElementById("filterCategory").value;
+     var min = document.getElementById("min").value;
+     var max = document.getElementById("max").value;
+
+     loading=true;
+     $scope.errorMessage='';
+
+     kregApi.filter(c,min,max)
+       .success(function(data){
+         console.log(data);
+          $scope.post=data;
+          loading=false;
+       })
+       .error(function () {
+           $scope.errorMessage="filter error";
+           loading=false;
+       });
    }
 
    refreshPost();
@@ -80,6 +101,11 @@ return {
   },
   postCreate: function(t,d,p,c){
     var url = apiUrl+'/create?title='+t+'&desc='+d+'&price='+p+'&cat='+c;
+    console.log(url);
+    return $http.get(url);
+  },
+  filter: function(c,min,max){
+    var url = apiUrl+'/filter?cat='+c+'&min='+min+'&max='+max;
     console.log(url);
     return $http.get(url);
   }
