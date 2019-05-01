@@ -48,6 +48,27 @@ app.get("/category", function(req, res) {
   })(res));
 });
 
+app.get("/create",function(req, res) {
+  var title = req.param('title');
+  var desc = req.param('desc');
+  var price = req.param('price');
+  var cat = req.param('cat');
+
+  console.log(title + desc + price + cat);
+
+  //second argument is user, change later
+  var sql = "insert into aji.post values (null,1,'"+desc+"','"+title+"',null,"+price+","+cat+");"
+
+  connection.query(sql, (function(res) {
+    return function(err, rows, fields) {
+      if (err) {
+        console.log("Create post error:");
+        console.log(err);
+      }
+      res.send(err); // Let the upstream guy know how it went
+    }
+  })(res));
+});
 
 
 

@@ -45,6 +45,8 @@ angular.module('buttons', [])
      kregApi.postCreate(w,x,y,z)
      .success(function(){})
      .error(function(){$scope.errorMessage="Unable create post";});
+
+     refreshPost();
    }
 
    function refreshCategory(){
