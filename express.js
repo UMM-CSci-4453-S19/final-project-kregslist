@@ -21,7 +21,7 @@ connection.connect(function(err) {
 app.use(express.static(__dirname + '/public'));
 
 app.get("/post", function(req, res) {
-  var sql = 'select aji.post.*, aji.category.type from aji.post join aji.category on aji.category.category_id = aji.post.category_id;';
+  var sql = 'select aji.post.*, aji.category.type, aji.user.* from aji.post join aji.category on aji.category.category_id = aji.post.category_id join aji.user on aji.user.user_id = aji.post.user_id;';
 
   connection.query(sql, (function(res) {
     return function(err, rows, fields) {
@@ -52,6 +52,20 @@ app.get("/filter", function(req, res) {
   })(res));
 });
 
+app.get("/login", function(req, res) {
+  var sql = 'select * from aji.user';
+
+  connection.query(sql, (function(res) {
+    return function(err, rows, fields) {
+      if (err) {
+        console.log("We have an error getting the users:");
+        console.log(err);
+      }
+      res.send(rows);
+    }
+  })(res));
+});
+
 app.get("/category", function(req, res) {
   var sql = 'select * from aji.category';
 
@@ -71,11 +85,12 @@ app.get("/create",function(req, res) {
   var desc = req.param('desc');
   var price = req.param('price');
   var cat = req.param('cat');
+  var user = req.param('user');
 
   console.log(title + desc + price + cat);
 
   //second argument is user, change later
-  var sql = "insert into aji.post values (null,1,'"+desc+"','"+title+"',null,"+price+","+cat+");"
+  var sql = "insert into aji.post values (null,"+user+",'"+desc+"','"+title+"',null,"+price+","+cat+");"
 
   connection.query(sql, (function(res) {
     return function(err, rows, fields) {
@@ -83,12 +98,30 @@ app.get("/create",function(req, res) {
         console.log("Create post error:");
         console.log(err);
       }
-      res.send(err); // Let the upstream guy know how it went
+      res.send(err);
     }
   })(res));
 });
 
+app.get("/user",function(req, res) {
+  var username = req.param('username');
+  var password = req.param('password');
+  var firstn = req.param('firstn');
+  var lastn = req.param('lastn');
+  var email = req.param('email');
 
+  var sql = "call aji.makeUser('"+firstn+"','"+lastn+"','"+email+"','"+username+"','"+password+"');";
+
+  connection.query(sql, (function(res) {
+    return function(err, rows, fields) {
+      if (err) {
+        console.log("Create user error:");
+        console.log(err);
+      }
+      res.send(err);
+    }
+  })(res));
+});
 
 
 

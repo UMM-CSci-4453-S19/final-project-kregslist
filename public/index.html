@@ -17,27 +17,32 @@
     <div align="right">
     <table id="cart" style="width:50%" border="3px solid black">
       <tr>
-        <th>PostID</th>
+        <th>For Sale</th>
         <th>User</th>
         <th>Description</th>
-        <th>Title</th>
         <th>Post time</th>
         <th>Price</th>
         <th>Category</th>
       </tr>
 
       <tr ng-repeat="item in post">
-        <td>{{item.post_id}}</td>
-        <td>{{item.user_id}}</td>
-        <td>{{item.description}}</td>
         <td>{{item.title}}</td>
-        <td>{{item.post_time}}</td>
+          <td>{{item.first_name}} {{item.last_name}}  {{item.email}}</td>
+        <td>{{item.description}}</td>
         <td>{{item.price}}</td>
         <td>{{item.type}}</td>
+        <td>{{item.post_time}}</td>
 
       </tr>
     </table>
 
+  </div>
+
+  <div>
+    <h2>Login</h2>
+    <select id="currentUser">
+      <option ng-repeat="u in user" value="{{u.user_id}}">{{u.first_name}} {{u.last_name}}</option>
+    </select>
   </div>
 
   <div>
@@ -71,7 +76,7 @@
     <h2>Create User</h2>
 
     username: <input type="text" id="username" value="">
-    password: <input type="text" id="password" value="">
+    password: <input type="password" id="password" value="">
     first name: <input type="text" id="firstn" value="">
     last name: <input type="text" id="lastn" value="">
     email: <input type="text" id="email" value="">

@@ -6,6 +6,7 @@ angular.module('buttons', [])
   function KregCtrl($scope, kregApi) {
     $scope.post=[];
     $scope.category=[];
+    $scope.user=[];
     $scope.errorMessage='';
     $scope.isLoading=isLoading;
 
@@ -34,22 +35,39 @@ angular.module('buttons', [])
         });;
    }
 
+   function refreshUser(){
+     loading=true;
+     $scope.errorMessage='';
+     kregApi.getUser()
+       .success(function(data){
+         console.log(data);
+          $scope.user=data;
+          loading=false;
+       })
+       .error(function () {
+           $scope.errorMessage="Unable to load User:  Database request failed";
+           loading=false;
+       });;
+  }
+
    function createPost(){
      var w = document.getElementById("title").value;
      var x = document.getElementById("description").value;
      var y = document.getElementById("price").value;
      var z = document.getElementById("category").value;
+     var u = document.getElementById("currentUser").value
 
      console.log("creating post");
      console.log(w);
      loading=true;
      $scope.errorMessage='';
-     kregApi.postCreate(w,x,y,z)
+     kregApi.postCreate(w,x,y,z,u)
      .success(function(){})
      .error(function(){$scope.errorMessage="Unable create post";});
 
      refreshPost();
    }
+
    function createUser(){
      var username = document.getElementById("username").value;
      var password = document.getElementById("password").value;
@@ -65,7 +83,7 @@ angular.module('buttons', [])
      .success(function(){})
      .error(function(){$scope.errorMessage="Unable create post";});
 
-
+     refreshUser();
    }
 
    function refreshCategory(){
@@ -105,6 +123,7 @@ angular.module('buttons', [])
 
    refreshPost();
    refreshCategory();
+   refreshUser();
 }
 
 function kregApi($http, apiUrl) {
@@ -117,8 +136,12 @@ return {
     var url = apiUrl + '/category';
     return $http.get(url);
   },
-  postCreate: function(t,d,p,c){
-    var url = apiUrl+'/create?title='+t+'&desc='+d+'&price='+p+'&cat='+c;
+  getUser: function(){
+    var url = apiUrl +'/login';
+    return $http.get(url);
+  },
+  postCreate: function(t,d,p,c,u){
+    var url = apiUrl+'/create?title='+t+'&desc='+d+'&price='+p+'&cat='+c+'&user='+u;
     console.log(url);
     return $http.get(url);
 
