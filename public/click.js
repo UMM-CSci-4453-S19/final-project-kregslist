@@ -13,6 +13,7 @@ angular.module('buttons', [])
     $scope.createPost=createPost;
     $scope.filter=filter;
     $scope.createUser=createUser;
+    $scope.remove=remove;
 
     var loading = false;
 
@@ -121,6 +122,19 @@ angular.module('buttons', [])
        });
    }
 
+   function remove($event){
+     console.log($event.target.id);
+      $scope.errorMessage='';
+      kregApi.delete($event.target.id)
+         .success(function(){})
+         .error(function() {
+           $scope.errorMessage="Unable to delete";
+         });
+
+     refreshPost();
+   }
+
+
    refreshPost();
    refreshCategory();
    refreshUser();
@@ -154,6 +168,11 @@ return {
   filter: function(c,min,max){
     var url = apiUrl+'/filter?cat='+c+'&min='+min+'&max='+max;
     console.log(url);
+    return $http.get(url);
+  },
+  delete: function(id){
+    console.log(id)
+    var url = apiUrl+'/delete?id='+id;
     return $http.get(url);
   }
 };

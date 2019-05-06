@@ -36,9 +36,10 @@
         <th>For Sale</th>
         <th>User</th>
         <th>Description</th>
-        <th>Post time</th>
         <th>Price</th>
         <th>Category</th>
+        <th>Date Posted</th>
+        <th></th>
       </tr>
 
       <tr ng-repeat="item in post">
@@ -48,6 +49,8 @@
         <td>{{item.price}}</td>
         <td>{{item.type}}</td>
         <td>{{item.post_time}}</td>
+        <td><button id="{{item.post_id}}" ng-click="remove($event,'item.post_id');">delete</button></td>
+
 
       </tr>
     </table>

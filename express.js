@@ -113,7 +113,7 @@ app.get("/user",function(req, res) {
   var sql = "call aji.makeUser('"+firstn+"','"+lastn+"','"+email+"','"+username+"','"+password+"');";
 
   connection.query(sql, (function(res) {
-    return function(err, rows, fields) {
+    return function(err) {
       if (err) {
         console.log("Create user error:");
         console.log(err);
@@ -123,6 +123,21 @@ app.get("/user",function(req, res) {
   })(res));
 });
 
+app.get("/delete",function(req, res) {
+  var id = req.param('id');
+  console.log(id);
+  var sql = 'delete from aji.post where post_id='+id;
+
+  connection.query(sql, (function(res) {
+    return function(err) {
+      if (err) {
+        console.log("delete post error, post id:"+id);
+        console.log(err)
+      }
+      res.send(err);
+    }
+  })(res))
+});
 
 
 app.listen(port);
