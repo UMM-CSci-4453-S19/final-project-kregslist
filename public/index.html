@@ -7,22 +7,39 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
   <script src="click.js"></script>
+  <link rel="stylesheet" href="style.css">
 
 </head>
 <body ng-app="buttons">
   <div class = "container-fluid">
-    <h1>Kregslist</h1>
+    <h1> <center> Kregslist</center> </h1>
 
   <div id="post" ng-controller="KregCtrl">
-    <div align="right">
+
+    <div class = "filter_post">
+      <h2>Filter Posts</h2>
+      Select Category:
+      <select id="filterCategory">
+        <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
+      </select>
+      Price(Minimum): <input type="text" id="min" value="">
+      Price(Maximum): <input type="text" id="max" value="">
+
+      <button ng-click="filter();">Filter</button>
+
+    </div>
+    <hr>
+
+    <div class = "post_table"align="right">
     <table id="cart" style="width:50%" border="3px solid black">
       <tr>
         <th>For Sale</th>
         <th>User</th>
         <th>Description</th>
-        <th>Post time</th>
         <th>Price</th>
         <th>Category</th>
+        <th>Date Posted</th>
+        <th></th>
       </tr>
 
       <tr ng-repeat="item in post">
@@ -32,11 +49,43 @@
         <td>{{item.price}}</td>
         <td>{{item.type}}</td>
         <td>{{item.post_time}}</td>
+        <td><button id="{{item.post_id}}" ng-click="remove($event,'item.post_id');">delete</button></td>
+
 
       </tr>
     </table>
 
   </div>
+  <div class = "create_user" align="left">
+    <button class = "create_user_but" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create User</button>
+
+    <div id="id01" class="modal">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <form class="modal-content" >
+        <div class="container">
+          <h1>Create user</h1>
+          <p>Please fill in this form to create an account.</p>
+          <hr>
+          <label for="username"><b>User Name</b></label>
+          <input class = "only_sign_up"  type="text" placeholder="Enter username" name="username" id="username" value="" required>
+          <label for="password"><b>Password</b></label>
+          <input class = "only_sign_up"  type="password" placeholder="Enter password" name="password" id="password" value="" required>
+          <label for="firstname"><b>First name</b></label>
+          <input class = "only_sign_up"  type="text" placeholder="Enter your first name" name="firstname" id="firstn" value="" required>
+          <label for="lastname"><b>Last Name</b></label>
+          <input class = "only_sign_up" type="text" placeholder="Enter your last name" name="lastname"  id="lastn" value="" required>
+          <label for="email"><b>Email</b></label>
+          <input class = "only_sign_up" type="text" placeholder="Enter your email" name="email" id="email" value="" required>
+          <div class="clearfix">
+
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            <button ng-click="createUser();" type="submit" onclick="document.getElementById('id01').style.display='none'" class="signupbtn" >Create User</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
   <div>
     <h2>Login</h2>
@@ -45,8 +94,8 @@
     </select>
   </div>
 
-  <div>
-    <h2>Create Post</h2>
+  <div class =  "create_post">
+  <!--  <h2>Create Post</h2>
     Title: <input type="text" id="title" value="">
     Description: <input type="text" id="description" value="">
     Price: <input type="text" id="price" value="">
@@ -54,42 +103,69 @@
     <select id="category">
       <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
     </select>
+    <button ng-click="createPost();">Create</button>  -->
 
-    <button ng-click="createPost();">Create</button>
 
+
+    <button class = "create_post_but" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Create Post</button>
+
+    <div id="id02" class="modal_2">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <form class="modal-content_2" >
+        <div class="container_2">
+          <h1>Post an item</h1>
+          <p>To post please fill out this form</p>
+          <hr>
+          <label for="title"><b>Title</b></label>
+          <input class = "only_sign_up"  type="text" placeholder="title" name="title" id="title" value="" required>
+
+          <label for="description"><b>Description</b></label>
+          <input class = "only_sign_up"  type="text" placeholder="Description of the item" name="description" id="description" value="" required>
+          <label for="price"><b>Price</b></label>
+          <input class = "only_sign_up" type="text" placeholder="How much do you want to sell the item?" name="price" id="price" value="" required>
+          <label for="category"><b>Category</b></label>
+
+          <select class = "only_sign_up" id="category">
+            <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
+          </select>
+
+          <div class="clearfix">
+            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+            <button ng-click="createPost();" type="submit" onclick="document.getElementById('id02').style.display='none'" class= "signupbtn"> Post</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
-  <div>
-    <h2>Filter Posts</h2>
-    Select Category:
-    <select id="filterCategory">
-      <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
-    </select>
-    Price(Minimum): <input type="text" id="min" value="">
-    Price(Maximum): <input type="text" id="max" value="">
 
-    <button ng-click="filter();">Filter</button>
 
-  </div>
 
-  <div>
-    <h2>Create User</h2>
 
-    username: <input type="text" id="username" value="">
-    password: <input type="password" id="password" value="">
-    first name: <input type="text" id="firstn" value="">
-    last name: <input type="text" id="lastn" value="">
-    email: <input type="text" id="email" value="">
 
-    <button ng-click="createUser();">Create</button>
-
-  </div>
 
 </div>
 
 
 
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+var modal_2 = document.getElementById('id02');
 
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+window.onclick = function(event) {
+  if (event.target == modal_2) {
+    modal.style.display = "none";
+  }
+}
+
+</script>
 </body>
 
 </html>
