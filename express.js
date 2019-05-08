@@ -44,7 +44,7 @@ app.get("/filter", function(req, res) {
   var max = req.param('max');
 
 
-  var sql = "select aji.post.*, aji.category.type from aji.post join aji.category on aji.category.category_id = aji.post.category_id where aji.post.category_id="+cat+" and aji.post.price >="+min+" and aji.post.price <="+max+";";
+  var sql = "select aji.post.*, aji.category.type, aji.user.* from aji.post join aji.category on aji.category.category_id = aji.post.category_id join aji.user on aji.user.user_id = aji.post.user_id where aji.post.category_id="+cat+" and aji.post.price >="+min+" and aji.post.price <="+max+";";
   connection.query(sql, (function(res) {
     return function(err, rows, fields) {
       if (err) {

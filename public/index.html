@@ -43,7 +43,7 @@
         <th>Price</th>
         <th>Category</th>
         <th>Date Posted</th>
-        <th></th>
+        <th ng-if="activeUser_html"></th>
       </tr>
     <thead>
       <tbody>
@@ -54,7 +54,7 @@
         <td>{{item.price}}</td>
         <td>{{item.type}}</td>
         <td>{{item.post_time}}</td>
-        <td><button id="{{item.post_id}}" ng-click="remove($event,'item.post_id');">delete</button></td>
+        <td ng-if="activeUser_html"><button id="{{item.post_id}}" ng-click="remove($event,'item.post_id');">delete</button></td>
       </tr>
         </tbody>
     </table>
