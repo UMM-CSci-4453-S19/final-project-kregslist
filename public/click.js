@@ -15,11 +15,36 @@ angular.module('buttons', [])
     $scope.createUser=createUser;
     $scope.remove=remove;
 
+    $scope.activeUser;
+    $scope.logout = logout;
+    $scope.login = login;
+    $scope.activeUser_html;
+
+
     var loading = false;
 
     function isLoading(){
       return loading;
     }
+
+    function login(){
+      var username = document.getElementById("username_login").value;
+      var password = document.getElementById("password_login").value;
+   // $scope.activeUser_html = true;
+    console.log("login attempt " + username  + password );
+              kregApi.loggedin(username,password)
+              .success(function(data){
+                $scope.activeUser=data;
+                console.log($scope.activeUser);
+                $scope.activeUser_html = true;
+              })
+            .error(function(){$scope.errorMessage="Unable to sign in";});
+  }
+
+function logout(){
+     console.log($scope.activeUser_html);
+     $scope.activeUser_html = false;
+  }
 
     function refreshPost(){
       loading=true;
@@ -56,10 +81,11 @@ angular.module('buttons', [])
      var x = document.getElementById("description").value;
      var y = document.getElementById("price").value;
      var z = document.getElementById("category").value;
-     var u = document.getElementById("currentUser").value
+     //var u = document.getElementById("currentUser").value
+     var u = $scope.activeUser[0]["login_id"];
 
      console.log("creating post");
-     console.log(w);
+     console.log(u);
      loading=true;
      $scope.errorMessage='';
      kregApi.postCreate(w,x,y,z,u)
@@ -168,6 +194,11 @@ return {
   filter: function(c,min,max){
     var url = apiUrl+'/filter?cat='+c+'&min='+min+'&max='+max;
     console.log(url);
+    return $http.get(url);
+  },
+  loggedin: function (username, password){
+    console.log("login api");
+    var url = apiUrl +'/login?username='+username+"&password="+password;
     return $http.get(url);
   },
   delete: function(id){

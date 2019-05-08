@@ -62,6 +62,7 @@
 
 <div class= "left_side" >
 
+<div ng-if="!activeUser_html">
 
   <div class = "create_user" align="left">
     <button class = "create_user_but" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create User</button>
@@ -94,63 +95,54 @@
   </div>
 
 
-  <div>
+  <div class = "login">
     <h2>Login</h2>
-    <select id="currentUser">
-      <option ng-repeat="u in user" value="{{u.user_id}}">{{u.first_name}} {{u.last_name}}</option>
-    </select>
-  </div>
-
-  <div class =  "create_post">
-  <!--  <h2>Create Post</h2>
-    Title: <input type="text" id="title" value="">
-    Description: <input type="text" id="description" value="">
-    Price: <input type="text" id="price" value="">
-    Select Category:
-    <select id="category">
-      <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
-    </select>
-    <button ng-click="createPost();">Create</button>  -->
-
-
-
-    <button class = "create_post_but" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Create Post</button>
-
-    <div id="id02" class="modal_2">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <form class="modal-content_2" >
-        <div class="container_2">
-          <h1>Post an item</h1>
-          <p>To post please fill out this form</p>
-          <hr>
-          <label for="title"><b>Title</b></label>
-          <input class = "only_sign_up"  type="text" placeholder="title" name="title" id="title" value="" required>
-
-          <label for="description"><b>Description</b></label>
-          <input class = "only_sign_up"  type="text" placeholder="Description of the item" name="description" id="description" value="" required>
-          <label for="price"><b>Price</b></label>
-          <input class = "only_sign_up" type="text" placeholder="How much do you want to sell the item?" name="price" id="price" value="" required>
-          <label for="category"><b>Category</b></label>
-
-          <select class = "only_sign_up" id="category">
-            <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
-          </select>
-
-          <div class="clearfix">
-            <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-            <button ng-click="createPost();" type="submit" onclick="document.getElementById('id02').style.display='none'" class= "signupbtn"> Post</button>
-          </div>
-        </div>
-      </form>
+      <ng-form>
+    <label for="username"><b>User Name</b></label>
+    <input   type="text" placeholder="Enter username" name="username" id="username_login" value="" required>  <br>
+    <label for="password"><b>Password</b></label>
+    <input   type="password" placeholder="Enter password" name="password" id="password_login" value="" required>
+    <input type="submit"  ng-click = "login()"  >
+     </ng-form>
     </div>
+</div>
+
+<div ng-if="activeUser_html">
+<div class =  "create_post">
+  <button class = "create_post_but" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Create Post</button>
+  <div id="id02" class="modal_2">
+    <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <form class="modal-content_2" >
+      <div class="container_2">
+        <h1>Post an item</h1>
+        <p>To post please fill out this form</p>
+        <hr>
+        <label for="title"><b>Title</b></label>
+        <input class = "only_sign_up"  type="text" placeholder="title" name="title" id="title" value="" required>
+        <label for="description"><b>Description</b></label>
+        <input class = "only_sign_up"  type="text" placeholder="Description of the item" name="description" id="description" value="" required>
+        <label for="price"><b>Price</b></label>
+        <input class = "only_sign_up" type="text" placeholder="How much do you want to sell the item?" name="price" id="price" value="" required>
+        <label for="category"><b>Category</b></label>
+        <select class = "only_sign_up" id="category">
+          <option ng-repeat="cat in category" value="{{cat.category_id}}">{{cat.type}}</option>
+        </select>
+        <div class="clearfix">
+          <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+          <button ng-click="createPost();" type="submit" onclick="document.getElementById('id02').style.display='none'" class= "signupbtn"> Post</button>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
+
+<div class= "log_out">
+<button class = "log_out_but" ng-click="logout()" >Log Out</button>
+</div>
+</div>
 
 
-
-  </div>
-
-
-
+</div>
 </div>
 
 

@@ -1,5 +1,8 @@
 var express = require('express'),
+
   mysql = require('mysql'),
+  session = require('express-session'),
+  bodyParser = require('body-parser'),
   credentials = require('./credentials.json'),
   app = express(),
   port = process.env.PORT || 1337;
@@ -23,6 +26,7 @@ app.use(express.static(__dirname + '/public'));
 app.get("/post", function(req, res) {
   var sql = 'select aji.post.*, aji.category.type, aji.user.* from aji.post join aji.category on aji.category.category_id = aji.post.category_id join aji.user on aji.user.user_id = aji.post.user_id;';
 
+  console.log("getting posts");
   connection.query(sql, (function(res) {
     return function(err, rows, fields) {
       if (err) {
@@ -52,20 +56,6 @@ app.get("/filter", function(req, res) {
   })(res));
 });
 
-app.get("/login", function(req, res) {
-  var sql = 'select * from aji.user';
-
-  connection.query(sql, (function(res) {
-    return function(err, rows, fields) {
-      if (err) {
-        console.log("We have an error getting the users:");
-        console.log(err);
-      }
-      res.send(rows);
-    }
-  })(res));
-});
-
 app.get("/category", function(req, res) {
   var sql = 'select * from aji.category';
 
@@ -87,7 +77,7 @@ app.get("/create",function(req, res) {
   var cat = req.param('cat');
   var user = req.param('user');
 
-  console.log(title + desc + price + cat);
+  console.log(user + title + desc + price + cat);
 
   //second argument is user, change later
   var sql = "insert into aji.post values (null,"+user+",'"+desc+"','"+title+"',null,"+price+","+cat+");"
@@ -137,6 +127,28 @@ app.get("/delete",function(req, res) {
       res.send(err);
     }
   })(res))
+});
+
+app.get("/login", function(req, res){
+ var username = req.param('username');
+  var password = req.param('password');
+  console.log("login attempt "+username);
+   var sql = 'SELECT * FROM aji.login WHERE username = "' + username + '" and password = "' +password+ '"';
+
+    connection.query(sql, (function(res) {
+    return function(err, rows, fields) {
+      if (rows.length > 0) {
+        console.log("The username and the password are correct!");
+        res.send(rows);
+      //  console.log(rows);
+      //  $scope.activeUser_html = true;
+      }
+      else {
+      	console.log('Incorrect Username Password!');
+          }
+    }
+  }
+)(res));
 });
 
 
