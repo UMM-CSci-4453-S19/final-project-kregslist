@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.4/angular.min.js"></script>
   <script src="click.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="style.css">
 
 </head>
@@ -30,8 +33,9 @@
     </div>
     <hr>
 
-    <div class = "post_table"align="right">
-    <table id="cart" style="width:50%" border="3px solid black">
+    <div class = "post_table">
+    <table id="cart" style="width:100%" border="3px solid black">
+      <thead>
       <tr>
         <th>For Sale</th>
         <th>User</th>
@@ -41,7 +45,8 @@
         <th>Date Posted</th>
         <th></th>
       </tr>
-
+    <thead>
+      <tbody>
       <tr ng-repeat="item in post">
         <td>{{item.title}}</td>
           <td>{{item.first_name}} {{item.last_name}}  {{item.email}}</td>
@@ -50,12 +55,14 @@
         <td>{{item.type}}</td>
         <td>{{item.post_time}}</td>
         <td><button id="{{item.post_id}}" ng-click="remove($event,'item.post_id');">delete</button></td>
-
-
       </tr>
+        </tbody>
     </table>
-
   </div>
+
+<div class= "left_side" >
+
+
   <div class = "create_user" align="left">
     <button class = "create_user_but" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Create User</button>
 
@@ -140,7 +147,7 @@
 
 
 
-
+  </div>
 
 
 

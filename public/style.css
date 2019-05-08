@@ -156,5 +156,17 @@ hr {
 }
 
 .filter_post {
+  text-align: center;
+}
+.post_table {
+  background-color: #eaf5f5;
+  float: right;
+  width: 75%;
+  height: 70%;
+}
+
+.left_side {
+  float: left;
+  width: 25%;
 
 }
