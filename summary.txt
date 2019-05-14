@@ -1,0 +1,17 @@
+Description of Project
+	- We made an off-brand kregslist that would be most likely used for a local selling site between people you trust. The project includes creating an account, buying and selling items, posting items, and signing into your account.
+
+Main goals achieved
+	-Create a sign in (not secure)
+	-create a user friendly interface
+	-add text stored as variables from html into mariaDB
+	-create unique sql queries and procedures that help with filtering and adding stuff to tables.
+
+Potential for future work
+	- securing logins
+	- creating a delete button that is specific to the user logged in ( currently, anybody can delete anything)
+	- create a more enticing front end design which removes the ugly table we display our stuff for sale on
+
+Overall reaction
+	- I think overall we completed our main goals and a little bit more which was suprising for the amount of work we needed to put into the project. The sign in function even though it's not secure, was an extra bit we added at the end which makes this project seem a little more realistic as a web app. We distributed the work evenly and worked great as a team. Overall was was a fun time advancing our skills with queries, procedures, and working database stuff into javascript. 
+
